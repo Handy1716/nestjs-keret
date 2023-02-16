@@ -1,4 +1,4 @@
-import { Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import Quiz from './quiz.entity';
 import Tag from './tag.entity';
 
@@ -9,6 +9,7 @@ export default class QuizTag {
 
   @ManyToOne(() => Quiz, (quiz) => quiz.quizTags)
   quiz: Quiz;
-  @OneToOne(() => Tag)
+
+  @ManyToOne(() => Tag, (tag) => tag.quizTags)
   tag: Tag;
 }

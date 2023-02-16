@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import QuizTag from './quizTag.entity';
 
 @Entity()
 export default class Tag {
@@ -6,4 +7,7 @@ export default class Tag {
   id: number;
   @Column()
   text: string;
+
+  @OneToMany(() => QuizTag, (quizTags) => quizTags.tag)
+  quizTags: QuizTag[];
 }
