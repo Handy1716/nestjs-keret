@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import Quiestion from './question.entity';
 
 @Entity()
 export default class Answer {
@@ -6,11 +13,12 @@ export default class Answer {
   id: number;
 
   @Column()
-  questionId: number;
-
-  @Column()
   text: string;
 
   @Column()
   rightAnswer: boolean;
+
+  @OneToOne(() => Quiestion)
+  @JoinColumn()
+  question: Quiestion;
 }

@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import Quiz from './quiz.entity';
 
 @Entity()
 export default class RunCode {
@@ -6,8 +7,8 @@ export default class RunCode {
   id: number;
 
   @Column()
-  quizId: number;
-
-  @Column()
   runCode: number;
+
+  @ManyToOne(() => Quiz, (quiz) => quiz.runcodes)
+  quiz: Quiz;
 }
